@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import reduxLogo from './redux.svg';
 import './App.css';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { connect } from 'react-redux'; /* Added so that connect works */
 
 // components
 import SpeedControl from '../SpeedControl/SpeedControl';
@@ -19,6 +20,7 @@ class App extends Component {
               <img src={logo} className="App-logo" alt="logo" />
               <img src={reduxLogo} className="App-logo" alt="logo" />
               <h1 className="App-title">Welcome to React Redux</h1>
+              <button onClick={()=>{console.log(`Current redux is:`, this.props.reduxState)}}>Check Redux State</button>
               <nav>
                 <ul>
                 <li><Link to="/">Speed Control</Link></li>
@@ -30,7 +32,7 @@ class App extends Component {
 
             <div className="content-container">
               <Route exact path="/" component={SpeedControl} />
-              <Route path="/passengers" component={Passengers} />
+            <Route path="/passengers" render={(props) => <Passengers {...props} dispatch={this.props.dispatch} />} />
               <Route path="/dashboard" component={Dashboard} />
             </div>
 
@@ -40,4 +42,5 @@ class App extends Component {
   }
 }
 
-export default App;
+const putReduxStateOnProps = (reduxState) => ({ reduxState });
+export default connect(putReduxStateOnProps)(App);
