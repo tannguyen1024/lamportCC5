@@ -20,7 +20,7 @@ class App extends Component {
               <img src={logo} className="App-logo" alt="logo" />
               <img src={reduxLogo} className="App-logo" alt="logo" />
               <h1 className="App-title">Welcome to React Redux</h1>
-              <button onClick={()=>{console.log(`Current redux is:`, this.props.reduxState)}}>Check Redux State</button>
+              {/* <button onClick={()=>{console.log(`Current redux is:`, this.props.reduxState)}}>Check Redux State</button> */}
               <nav>
                 <ul>
                 <li><Link to="/">Speed Control</Link></li>
